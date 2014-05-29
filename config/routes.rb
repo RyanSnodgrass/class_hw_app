@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'sessions#new'
 
-  get 'login' => 'sessions#new' unless @current_user 
+  get 'login' => 'sessions#new' #unless @current_user 
   get 'logout' => 'sessions#destroy'
 
   resources :sessions, only: [:new, :create, :destroy]
