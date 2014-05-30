@@ -11,7 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529191325) do
+ActiveRecord::Schema.define(version: 20140530175259) do
+
+  create_table "assignments", force: true do |t|
+    t.string  "assignment_name"
+    t.text    "description"
+    t.date    "due_date"
+    t.integer "cohort_id"
+  end
+
+  create_table "cohorts", force: true do |t|
+    t.string  "track"
+    t.integer "location_id"
+    t.date    "start_date"
+    t.date    "end_date"
+  end
+
+  create_table "comments", force: true do |t|
+    t.text    "content"
+    t.integer "commentable_id"
+    t.string  "commentable_type"
+    t.integer "user_id"
+  end
+
+  create_table "enrollments", force: true do |t|
+    t.integer "cohort_id"
+    t.integer "user_id"
+  end
+
+  create_table "locations", force: true do |t|
+    t.string "city"
+  end
+
+  create_table "submissions", force: true do |t|
+    t.string  "github_link"
+    t.string  "heroku_link"
+    t.integer "user_id"
+    t.string  "status"
+    t.integer "assignment_id"
+  end
 
   create_table "users", force: true do |t|
     t.string "email"
