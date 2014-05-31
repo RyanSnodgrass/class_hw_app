@@ -1,9 +1,9 @@
 .row
 	.medium-6.small-centered.columns
-		= @cohort.track
-		= @cohort.location.city
-		= @cohort.start_date
-		= @cohort.end_date
+		%strong= @cohort.track 
+		%strong= @cohort.location.city
+		%strong= @cohort.start_date
+		%strong= @cohort.end_date
 		%br
 		%a.button{href: edit_cohort_path} Update Cohort
 .row
@@ -26,14 +26,18 @@
 			= f.submit "Add Assignment"
 
 %h3 Assignments
+
 .row
 	- @assignments.each do |a|
+
 		.medium-6.columns
+			- if a.id != nil
+				%a.button{href: "/assignments/#{a.id}"} View Assignment
 			%strong= a.assignment_name
 			%br
 			= a.description
 			%br
-
 			= a.due_date
-
+			%br
+			%br	
 						
