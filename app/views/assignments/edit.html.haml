@@ -1,0 +1,19 @@
+.row
+	%a.button{href: "/assignments/#{@assignment.id}"} Back
+.row
+	.small-6.columns
+		= form_for @assignment, method: :put do |f|
+			= f.hidden_field :cohort_id, value: @cohort.id
+			= f.label :assignment_name
+			%br
+			= f.text_field :assignment_name
+			
+			= f.label :description
+			%br
+			= f.text_area :description
+
+			= f.label :due_date
+			%br
+			= f.date_field :due_date
+
+			= f.submit "Update Assignment"

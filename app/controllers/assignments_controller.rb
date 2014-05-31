@@ -14,6 +14,7 @@ class AssignmentsController < ApplicationController
 
 	def edit
 		@assignment = Assignment.find(params[:id])
+		@cohort = Cohort.find(@assignment.cohort_id)
 	end
 	def update
 		@assignment = Assignment.find(params[:id])
