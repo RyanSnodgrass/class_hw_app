@@ -1,8 +1,7 @@
 .row
-	= @cohorts.each do |c|
+	- @cohorts.each do |c|
 		.medium-6.columns
 			= c.track
-
 			= c.location.city
 			= c.start_date
 			= c.end_date
