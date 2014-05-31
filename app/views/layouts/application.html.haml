@@ -1,0 +1,75 @@
+!!!
+%html
+	%head
+		%title ClassHwApp
+		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag 'application', 'data-turbolinks-track' => true
+		= csrf_meta_tags
+	%body
+		%p.notice= notice
+		%p.alert= alert
+		- if user_signed_in?
+			%h4 
+				Logged in as #{current_user.email}
+				/ %strong= current_user.email
+			= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+			= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+		- else
+			= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+			= link_to "Login", new_user_session_path, :class => 'navbar-link'
+		= yield
+
+/ .overlay		
+/ 	.small-11.medium-9.large-6.small-centered.columns
+/ 		.modal
+/ 			.row
+/ 				%form
+/ 					.row
+/ 						.small-11.columns
+/ 						.small-1.columns
+/ 							%a.close-reveal-modal ×
+					
+/ 				= form_tag sessions_path do
+/ 					.row
+/ 						.small-9.small-centered.columns
+						
+/ 							= label_tag :email
+/ 							= text_field_tag :email, params[:email]
+/ 					.row
+/ 						.small-9.small-centered.columns
+/ 							= label_tag :password
+/ 							= password_field_tag :password
+/ 					.row
+/ 						.small-6.small-centered.columns
+/ 							= submit_tag "Login", class: "button success expand"
+
+/ %h1 Splash Page
+
+/ .row	
+/ 	.small-12.medium-9.large-10.columns
+/ 	.small-12.medium-3.large-2.columns
+/ 		.button.login login
+/ .row
+/ 	.large-6.large-centered.columns
+/ 		%h4 Welcome to the Class asSignemnt trackKer!
+/ 		%br
+/ 		%h4 If you're a new user please sign up!
+/ 		= form_for @new_user, url: users_path, method: :post do |f|
+/ 			= label_tag :first_name
+/ 			= f.text_field :first_name
+
+/ 			= label_tag :last_name
+/ 			= f.text_field :last_name
+/ 			= label_tag :email, nil
+/ 			= f.text_field :email
+
+/ 			= f.collection_select :role, User::ROLES, :to_s, :humanize
+
+/ 			= label_tag :password, nil
+/ 			= f.password_field :password
+
+/ 			= label_tag :password_confirm
+/ 			= f.password_field :password_confirm
+
+/ 			= f.submit "Register", :class => "button"
+/ 			%br
