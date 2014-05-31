@@ -1,0 +1,8 @@
+.row
+	.small-6.columns
+		= @cohort.track
+		= @cohort.location.city
+		= @cohort.start_date
+		= @cohort.end_date
+		%br
+		%a.button{href: edit_cohort_path} Update

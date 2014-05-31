@@ -1,0 +1,18 @@
+.row
+	.small-6.columns
+		= form_for @cohort, method: :put do |f|
+			= f.label :track
+			%br
+			= f.text_field :track
+			
+			= f.select :location_id, Location.all.collect{|d| [d.city, d.id]}	    
+
+			= f.label :start_date
+			%br
+			= f.date_field :start_date
+
+			= f.label :end_date
+			%br
+			= f.date_field :end_date
+
+			= f.submit "Update"
