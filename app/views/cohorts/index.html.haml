@@ -5,5 +5,6 @@
 			= c.location.city
 			= c.start_date
 			= c.end_date
+			%a.button{href: "/cohorts/#{c.id}" } Show
 .row
-	%a.button{href: new_cohort_path} Add a Cohort
+	%a.button.success{href: new_cohort_path} Add a Cohort
