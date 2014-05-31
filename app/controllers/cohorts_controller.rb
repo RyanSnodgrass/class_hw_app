@@ -4,6 +4,8 @@ class CohortsController < ApplicationController
 	end
 	def show
 		@cohort = Cohort.find(params[:id])
+		@new_assignment = @cohort.assignments.build
+		@assignments = @cohort.assignments
 	end
 	def new
 		@new_cohort = Cohort.new

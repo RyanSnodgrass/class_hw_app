@@ -1,8 +1,35 @@
 .row
-	.small-6.columns
+	.small-6.small-centered.columns
 		= @cohort.track
 		= @cohort.location.city
 		= @cohort.start_date
 		= @cohort.end_date
 		%br
-		%a.button{href: edit_cohort_path} Update
+		%a.button{href: edit_cohort_path} Update Cohort
+.row
+	.small-6.columns
+		= form_for @new_assignment, url: "/assignments", method: :post do |f|
+			= f.hidden_field :cohort_id, value: @cohort.id
+			= f.label :assignment_name
+			%br
+			= f.text_field :assignment_name
+			
+			= f.label :description
+			%br
+			= f.text_area :description
+
+			= f.label :due_date
+			%br
+			= f.date_field :due_date
+
+			= f.submit "Add Assignment"
+
+
+.row
+	.medium-6.columns
+		- @assignments.each do |a|
+			%strong= a.assignment_name
+			= a.description
+			= a.due_date
+
+					
