@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :assignments
   resources :cohorts
   resources :users
+  resources :submissions
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,21 @@
+.row
+	.small-9.large-10.columns
+
+	.small-3.large-2.columns
+		%a.button{href: "/assignments/#{@submission.assignment_id}"} Back
+.row
+	.small-10.medium-6.large-6.small-centered.columns
+		%h3 This is #{@submission.user.first_name} #{@submission.user.last_name}'s submission
+		%h3 For the assignment #{@submission.assignment.assignment_name}
+		%br
+		This submission is currently:
+		= @submission.status
+		%br 
+		%a{href: "http://#{@submission.github_link}"} Github Link
+		%br
+		%a{href: "http://#{@submission.heroku_link}"} Heroku Link
+		/ t.string  "github_link"
+		/ t.string  "heroku_link"
+		/ t.integer "user_id"
+		/ t.string  "status"
+		/ t.integer "assignment_id"
