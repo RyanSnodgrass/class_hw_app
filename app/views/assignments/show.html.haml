@@ -1,0 +1,24 @@
+.row
+	.small-9.large-10.columns
+
+	.small-3.large-2.columns
+		%a.button{href: "/cohorts/#{@cohort.id}"} Back
+.row
+	.medium-4.small-centered.columns
+		%strong= @cohort.track 
+		%strong= @cohort.location.city
+		%strong= @cohort.start_date
+		%strong= @cohort.end_date
+.row
+	.medium-4.small-centered.columns
+		%h3= @assignment.assignment_name
+.row
+	%p= @assignment.description
+.row
+	.small-4.small-centered.columns
+		%a.button{href: edit_assignment_path(@assignment.id)} Update
+.row
+	.small-4.small-centered.columns
+		%h4 This Assignment is due
+		%br
+		= @assignment.due_date
