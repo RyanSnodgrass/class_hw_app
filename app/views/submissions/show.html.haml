@@ -22,4 +22,7 @@
 			%li= button_to "Incomplete", status_update_submission_path, class: "button alert", method: :patch, :params => {:status => "Incomplete"}
 			%li= button_to "In Progress", status_update_submission_path, class: "button", method: :patch, :params => {:status => "In Progress"}
 			%li= button_to "Complete", status_update_submission_path, class: "button success", method: :patch, :params => {:status => "Complete"}
+.row
+	.medium-8.large-8.small-centered.columns
+		= button_to "Delete", submission_path, class: "button alert expand", method: :delete, :params => {:my_param => @submission.assignment_id}
 

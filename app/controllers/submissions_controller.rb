@@ -44,6 +44,16 @@ class SubmissionsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@submission = Submission.find(params[:id])
+		@assignment = Assignment.find(params["my_param"])
+		if @submission.destroy
+			redirect_to assignment_path(@assignment.id)
+		else
+			redirect_to :back, notice: 'Error'
+		end
+	end
+
 	def submission_params
 		params.require(:submission).permit(:heroku_link, :github_link, :status, :assignment_id, :user_id, :my_param)
 		# params.require(:status).permit(:status)
