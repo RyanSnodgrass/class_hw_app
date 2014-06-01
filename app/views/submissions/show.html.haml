@@ -1,0 +1,28 @@
+.row
+	.small-9.large-10.columns
+
+	.small-3.large-2.columns
+		%a.button{href: "/assignments/#{@submission.assignment_id}"} Back
+.row
+	.small-10.medium-6.large-6.small-centered.columns
+		%h3 This is #{@submission.user.first_name} #{@submission.user.last_name}'s submission
+		%h3 For the assignment #{@submission.assignment.assignment_name}
+		%br
+		This submission is currently:
+		= @submission.status
+		%br 
+		%a{href: "http://#{@submission.github_link}"} Github Link
+		%br
+		%a{href: "http://#{@submission.heroku_link}"} Heroku Link
+
+.row
+	.medium-8.large-8.small-centered.columns
+		%ul.button-group
+			%li= button_to "Reset", status_update_submission_path, class: "button secondary", method: :patch, :params => {:status => nil}
+			%li= button_to "Incomplete", status_update_submission_path, class: "button alert", method: :patch, :params => {:status => "Incomplete"}
+			%li= button_to "In Progress", status_update_submission_path, class: "button", method: :patch, :params => {:status => "In Progress"}
+			%li= button_to "Complete", status_update_submission_path, class: "button success", method: :patch, :params => {:status => "Complete"}
+.row
+	.medium-8.large-8.small-centered.columns
+		= button_to "Delete", submission_path, class: "button alert expand", method: :delete, :params => {:my_param => @submission.assignment_id}
+

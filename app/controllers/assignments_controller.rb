@@ -2,6 +2,8 @@ class AssignmentsController < ApplicationController
 	def show
 		@assignment = Assignment.find(params[:id])
 		@cohort = Cohort.find(@assignment.cohort_id)
+		@submissions = @assignment.submissions
+
 	end
 	def create
 		@new_assignment = Assignment.new(assignment_params)

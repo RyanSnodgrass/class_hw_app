@@ -22,3 +22,24 @@
 		%h4 This Assignment is due
 		%br
 		= @assignment.due_date
+		%br
+
+
+		= button_to "Add an App", new_submission_path, class: "button success expand", method: :get, :params => {:my_param => @assignment.id}
+.row
+
+	- @submissions.each do |f|
+		.medium-6.columns
+			= f.github_link
+			%br
+			= f.heroku_link
+			%br
+			- if f.status?
+				= f.status
+			- else
+				%p This App has not yet been graded
+			%br
+			= f.user.first_name + " " + f.user.last_name
+			%br
+			%a.button{href: submission_path(f.id)} View
+			%br
