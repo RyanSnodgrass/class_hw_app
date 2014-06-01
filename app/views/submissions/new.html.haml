@@ -1,0 +1,18 @@
+.row
+	.medium-6.columns
+		%h3 Add a submission to #{@assignment.assignment_name}
+		= form_for @new_submission do |f|
+			=	f.label :github_link
+			%br
+			= f.text_field :github_link
+
+			= f.label :heroku_link
+			%br
+			= f.text_field :heroku_link
+			
+			= f.hidden_field :user_id, value: current_user.id
+			%br
+
+			= f.hidden_field :assignment_id, value: @assignment.id
+
+			= f.submit "Add the App"

@@ -1,7 +1,7 @@
 $ ->
 	modal = $('.overlay')
 
-	$('.login').on 'click', ->
+	$('.add').on 'click', ->
 		modal.fadeIn 'fast'
 
 	$('.close-reveal-modal').on 'click', ->
