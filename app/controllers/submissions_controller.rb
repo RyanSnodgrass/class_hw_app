@@ -1,14 +1,19 @@
 class SubmissionsController < ApplicationController
 	def show
 		@submission = Submission.find(params[:id])
+
 		
 	end
 
 	def new
 		@new_submission = Submission.new
-
 		@assignment = Assignment.find(params["my_param"])
-
+		@cur_user_subs = @assignment.submissions.where('user_id = ?', current_user.id)
+		if @cur_user_subs.count == 0
+			render "/submissions/new"
+		else
+			redirect_to :back, notice: "Woah there, you've already submitted an app!"
+		end
 	end
 
 	def create
