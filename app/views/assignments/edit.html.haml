@@ -17,3 +17,10 @@
 			= f.date_field :due_date
 
 			= f.submit "Update Assignment"
+
+.row
+
+	%a.button{"data-method" => "delete", href: "/assignments/#{@assignment.id}/"} Delete
+
+
+

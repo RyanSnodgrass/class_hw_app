@@ -25,6 +25,16 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@assignment = Assignment.find(params[:id])
+		cohort = @assignment.cohort_id
+		if @assignment.destroy
+			redirect_to cohort_path(cohort)
+		else
+			redirect_to :back
+		end
+	end
+
 	private
 
 	def assignment_params
