@@ -14,8 +14,12 @@
 		%a{href: "http://#{@submission.github_link}"} Github Link
 		%br
 		%a{href: "http://#{@submission.heroku_link}"} Heroku Link
-		/ t.string  "github_link"
-		/ t.string  "heroku_link"
-		/ t.integer "user_id"
-		/ t.string  "status"
-		/ t.integer "assignment_id"
+
+.row
+	.medium-8.large-8.small-centered.columns
+		%ul.button-group
+			%li= button_to "Reset", status_update_submission_path, class: "button secondary", method: :patch, :params => {:status => nil}
+			%li= button_to "Incomplete", status_update_submission_path, class: "button alert", method: :patch, :params => {:status => "Incomplete"}
+			%li= button_to "In Progress", status_update_submission_path, class: "button", method: :patch, :params => {:status => "In Progress"}
+			%li= button_to "Complete", status_update_submission_path, class: "button success", method: :patch, :params => {:status => "Complete"}
+
