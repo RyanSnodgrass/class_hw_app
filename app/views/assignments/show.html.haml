@@ -25,7 +25,7 @@
 		%br
 
 
-		= button_to "Add an App", new_submission_path, form_class: "button success", method: :get, :params => {:my_param => @assignment.id}
+		= button_to "Add an App", new_submission_path, class: "button success expand", method: :get, :params => {:my_param => @assignment.id}
 		/ %a.button.success.expand.add{href: new_submission_path} Submit an app
 
 
