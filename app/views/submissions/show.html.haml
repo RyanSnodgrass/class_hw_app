@@ -25,4 +25,19 @@
 .row
 	.medium-8.large-8.small-centered.columns
 		= button_to "DESTROY!!!!!", submission_path, class: "button alert expand", method: :delete, :params => {:my_param => @submission.assignment_id}
+.row
+	.medium-6.small-centered.columns
+		%p comment on this assignment
+		= form_for Comment.new do |f|
+			= f.text_area :content
+			= f.hidden_field :commentable_id, value: @submission.id
+			= f.hidden_field :commentable_type, value: "Submission"
+			= f.hidden_field :user_id, value: current_user.id
+			= f.submit "Add Comment"
+		- @submission.comments.each do |c|
+			.panel
+				= c.user.first_name + " " + c.user.last_name
+				%br
+				= c.content
+			%br
 
