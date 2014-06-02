@@ -18,28 +18,44 @@
 	.small-4.small-centered.columns
 		%a.button{href: edit_assignment_path(@assignment.id)} Update
 .row
-	.small-4.small-centered.columns
+	.medium-4.small-centered.columns
 		%h4 This Assignment is due
 		%br
 		= @assignment.due_date
 		%br
-
-
+.row
+	.medium-6.small-centered.columns
+		%p comment on this assignment
+		= form_for Comment.new do |f|
+			= f.text_area :content
+			= f.hidden_field :commentable_id, value: @assignment.id
+			= f.hidden_field :commentable_type, value: "Assignment"
+			= f.hidden_field :user_id, value: current_user.id
+			= f.submit "Add Comment"
+		- @assignment.comments.each do |c|
+			.panel
+				= c.user.first_name + " " + c.user.last_name
+				%br
+				= c.content
+			%br
+.row
+	.medium-4.small-centered.columns
 		= button_to "Add an App", new_submission_path, class: "button success expand", method: :get, :params => {:my_param => @assignment.id}
 .row
 
-	- @submissions.each do |f|
+	- @assignment.submissions.each do |f|
 		.medium-6.columns
-			= f.github_link
-			%br
-			= f.heroku_link
-			%br
-			- if f.status?
-				= f.status
-			- else
-				%p This App has not yet been graded
-			%br
-			= f.user.first_name + " " + f.user.last_name
-			%br
-			%a.button{href: submission_path(f.id)} View
-			%br
+			.panel.callout.radius
+				= f.github_link
+				%br
+				= f.heroku_link
+				%br
+				- if f.status?
+					= f.status
+				- else
+					%p This App has not yet been graded
+				%br
+				= f.user.first_name + " " + f.user.last_name
+				%br
+				%a.button{href: submission_path(f.id)} View
+				%br
