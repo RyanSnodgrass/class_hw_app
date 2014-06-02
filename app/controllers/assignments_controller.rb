@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+	before_action :authenticate_user!
 	def show
 		@assignment = Assignment.find(params[:id])
 		@cohort = Cohort.find(@assignment.cohort_id)
