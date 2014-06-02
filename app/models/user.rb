@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 	validates_presence_of :email
 	validates_uniqueness_of :email
 	has_many :submissions
+	has_many :cohorts, through: :enrollments
 
 	ROLES = %w[student teacher]
 	
