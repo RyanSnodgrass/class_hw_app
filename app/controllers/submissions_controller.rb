@@ -1,4 +1,5 @@
 class SubmissionsController < ApplicationController
+	before_action :authenticate_user!
 	def show
 		@submission = Submission.find(params[:id])
 

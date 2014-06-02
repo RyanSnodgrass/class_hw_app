@@ -34,11 +34,11 @@
 			= f.hidden_field :commentable_type, value: "Submission"
 			= f.hidden_field :user_id, value: current_user.id
 			= f.submit "Add Comment"
+		%br
 		- @submission.comments.each do |c|
-			.panel
-				= c.user.first_name + " " + c.user.last_name
-				= c.created_at
-				%br
-				= c.content
+			%blockquote= c.content
+			%cite= c.user.first_name + " " + c.user.last_name
+			%cite= c.created_at
 			%br
+
 
