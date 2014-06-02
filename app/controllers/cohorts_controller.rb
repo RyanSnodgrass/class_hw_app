@@ -10,11 +10,11 @@ class CohortsController < ApplicationController
 		@assignments = @cohort.assignments
 	end
 
-	def add_user_enrollment_cohort
+	def add_user_enrollment
 		# @enrollment = Enrollment.new(enrollment_params)
 		@cohort = Cohort.find(params[:id])
 		# @cohort.reload!
-
+		debugger
 		if 1 < 2 #@cohort.password == params[:password]
 			redirect_to :back, notice: "passwords match"
 		else

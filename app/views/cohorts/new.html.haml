@@ -6,11 +6,10 @@
 .row
 	.small-6.columns
 		= form_for Cohort.new do |f|
-			= f.label :track
-			%br
-			= f.text_field :track
-			
+
 			= f.select :location_id, Location.all.collect{|d| [d.city, d.id]}	    
+
+			= f.select :track_id, Track.all.collect{|t| [t.course, t.id]}
 
 			= f.label :start_date
 			%br

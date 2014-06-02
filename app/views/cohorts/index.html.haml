@@ -2,17 +2,17 @@
 	- @cohorts.each do |c|
 		.medium-6.columns
 			.panel.callout.radius
-				= c.track
+				= c.track.course
 				= c.location.city
 				= c.start_date
 				= c.end_date
 				%br
 				%a.button.expand{href: "/cohorts/#{c.id}" } Show
 				%br
-				= form_for "/cohorts/#{c.id}/add_user_enrollment", method: :get do |f|
+				= form_tag Enrollment.new do |f|
 					%p Have the Password? Enter it here!
-					/ = f.hidden_field :cohort_id, value: c.id
-					= f.text_field :password
-					= f.submit
+					= f.hidden_field :cohort_id, value: c.id
+					= f.text_field :secret_token
+					= f.submit "Enroll Today"
 .row
 	%a.button.success{href: new_cohort_path} Add a Cohort
