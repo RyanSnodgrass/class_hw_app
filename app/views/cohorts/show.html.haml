@@ -11,24 +11,25 @@
 		%strong= @cohort.end_date
 		%br
 		%a.button{href: edit_cohort_path} Update Cohort
-.row
-	.medium-6.columns
-		%h3 Add An Assignment
-		= form_for @new_assignment, url: "/assignments", method: :post do |f|
-			= f.hidden_field :cohort_id, value: @cohort.id
-			= f.label :assignment_name
-			%br
-			= f.text_field :assignment_name
-			
-			= f.label :description
-			%br
-			= f.text_area :description
+- if can? :create, Assignment
+	.row
+		.medium-6.columns
+			%h3 Add An Assignment
+			= form_for @new_assignment, url: "/assignments", method: :post do |f|
+				= f.hidden_field :cohort_id, value: @cohort.id
+				= f.label :assignment_name
+				%br
+				= f.text_field :assignment_name
+				
+				= f.label :description
+				%br
+				= f.text_area :description
 
-			= f.label :due_date
-			%br
-			= f.date_field :due_date
+				= f.label :due_date
+				%br
+				= f.date_field :due_date
 
-			= f.submit "Add Assignment"
+				= f.submit "Add Assignment"
 
 %h3 Assignments
 

@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
 	# has_many :cohorts, through: :enrollments
 	belongs_to :cohorts
 
-	ROLES = %w[student teacher]
+	ROLES = %w[student teacher admin]
 	
 end

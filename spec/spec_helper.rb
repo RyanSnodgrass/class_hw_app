@@ -2,7 +2,8 @@
 # specs live under a `spec` directory, which RSpec adds to the `$LOAD_PATH`.
 # The generated `.rspec` file contains `--require spec_helper` which will cause this
 # file to always be loaded, without a need to explicitly require it in any files.
-#
+
+require 'factory_girl'
 # Given that it is always loaded, you are encouraged to keep this file as
 # light-weight as possible. Requiring heavyweight dependencies from this file
 # will add to the boot time of your test suite on EVERY test run, even for an
@@ -17,6 +18,15 @@
 RSpec.configure do |config|
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
+  config.include FactoryGirl::Syntax::Methods
+  # config.before(:suite) do
+  #   begin
+  #     DatabaseCleaner.start
+  #     FactoryGirl.lint
+  #   ensure
+  #     DatabaseCleaner.clean
+  #   end
+  # end
 =begin
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
@@ -34,6 +44,7 @@ RSpec.configure do |config|
     # (e.g. via a command-line flag).
     config.default_formatter = 'doc'
   end
+
 
   # Print the 10 slowest examples and example groups at the
   # end of the spec run, to help surface which specs are running

@@ -56,7 +56,7 @@ class CohortsController < ApplicationController
 	private 
 
 	def cohort_params
-		params.require(:cohort).permit(:track, :location_id, :start_date, :end_date, :password)
+		params.require(:cohort).permit(:track_id, :location_id, :start_date, :end_date, :password)
 	end
 
 	def enrollment_params
