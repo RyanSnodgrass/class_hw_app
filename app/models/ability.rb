@@ -3,10 +3,16 @@ class Ability
 
   def initialize(user)
 
-    if user.teacher?
-        can :manage, :all
-    else
+    if user.role == "admin"
+      can :manage, [Cohort, Track]#, Track, Location, Comment, User
 
+    elsif user.role == "teacher"
+      can :manage, Assignment
+      can :manage, Comment #:assignments, :comments
+
+    else
+      can :manage, Submission #:comments, :submissions
+      can :manage, Comment
     end
 
 

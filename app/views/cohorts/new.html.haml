@@ -1,11 +1,15 @@
 .row
+	.small-9.large-10.columns
+
+	.small-3.large-2.columns
+		%a.button{href: "/cohorts"} Back
+.row
 	.small-6.columns
 		= form_for Cohort.new do |f|
-			= f.label :track
-			%br
-			= f.text_field :track
-			
+
 			= f.select :location_id, Location.all.collect{|d| [d.city, d.id]}	    
+
+			= f.select :track_id, Track.all.collect{|t| [t.course, t.id]}
 
 			= f.label :start_date
 			%br
@@ -14,6 +18,14 @@
 			= f.label :end_date
 			%br
 			= f.date_field :end_date
+
+			= f.label :password
+			%br
+			= f.password_field :password
+	
+			= f.label "password confirmation"
+			%br
+			= f.password_field :password_confirmation
 
 			= f.submit "Create"
 

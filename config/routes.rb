@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: "home#index"
 
-  resources :assignments, :cohorts, :users, :comments
+  resources :assignments, :users, :comments
+
+  resources :cohorts do
+    member do
+      get 'add_user_enrollment'
+    end
+  end
   
   resources :submissions do
     member do

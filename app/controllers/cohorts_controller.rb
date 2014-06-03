@@ -1,4 +1,5 @@
 class CohortsController < ApplicationController
+
 	before_action :authenticate_user!
 	def index
 		@cohorts = Cohort.all
@@ -7,6 +8,18 @@ class CohortsController < ApplicationController
 		@cohort = Cohort.find(params[:id])
 		@new_assignment = @cohort.assignments.build
 		@assignments = @cohort.assignments
+	end
+
+	def add_user_enrollment
+		# @enrollment = Enrollment.new(enrollment_params)
+		@cohort = Cohort.find(params[:id])
+		# @cohort.reload!
+		debugger
+		if 1 < 2 #@cohort.password == params[:password]
+			redirect_to :back, notice: "passwords match"
+		else
+			redirect_to :back, notice: "Something went wrong"
+		end
 	end
 	def new
 		@new_cohort = Cohort.new
@@ -39,8 +52,15 @@ class CohortsController < ApplicationController
 			redirect_to cohort_path(@cohort)
 		end
 	end
+
+	private 
+
 	def cohort_params
-		params.require(:cohort).permit(:track, :location_id, :start_date, :end_date, :password_digest)
+		params.require(:cohort).permit(:track_id, :location_id, :start_date, :end_date, :password)
+	end
+
+	def enrollment_params
+		params.require(:enrollment).permit(:cohort_id)
 	end
 
 end
