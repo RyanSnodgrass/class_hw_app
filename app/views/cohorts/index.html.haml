@@ -1,19 +1,36 @@
 .row
-	- @cohorts.each do |c|
-		.medium-6.columns
-			.panel.callout.radius
-				= c.track.course
-				= c.location.city
-				= c.start_date
-				= c.end_date
-				%br
-				%a.button.expand{href: "/cohorts/#{c.id}" } Show
-				%br
-				/ = form_tag  do |f|
-				/ 	%p Have the Password? Enter it here!
-				/ 	= f.hidden_field :cohort_id, value: c.id
-				/ 	= f.text_field :secret_token
-				/ 	= f.submit "Enroll Today"
+	.large-12.columns
+		%table
+			%thead
+				%th Course
+				%th Location
+				%th Start Date
+				%th End Date
+				%th View the Cohort
+			%tbody
+				- @cohorts.each do |c|
+					%tr
+						%td= c.track.course
+						%td= c.location.city
+						%td= c.start_date
+						%td= c.end_date
+						%td
+							%a.button.expand{href: "/cohorts/#{c.id}" } Show
+/ - @cohorts.each do |c|
+/ 	.medium-6.columns
+/ 		.panel.callout.radius
+/ 			= c.track.course
+/ 			= c.location.city
+/ 			= c.start_date
+/ 			= c.end_date
+/ 			%br
+/ 			%a.button.expand{href: "/cohorts/#{c.id}" } Show
+%br
+/ = form_tag  do |f|
+/ 	%p Have the Password? Enter it here!
+/ 	= f.hidden_field :cohort_id, value: c.id
+/ 	= f.text_field :secret_token
+/ 	= f.submit "Enroll Today"
 - if can? :create, Cohort
 	.row
 		%a.button.success{href: new_cohort_path} Add a Cohort
